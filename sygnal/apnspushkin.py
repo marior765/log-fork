@@ -166,6 +166,12 @@ class ApnsPushkin(ConcurrencyLimitedPushkin):
                 loop=loop,
             )
 
+            log.info(f"keyfile: {self.get_config("keyfile")}")
+            log.info(f"key_id: {self.get_config("key_id")}")
+            log.info(f"team_id: {self.get_config("team_id")}")
+            log.info(f"topic: {self.get_config("topic")}")
+            log.info(f"sandbox: {self.use_sandbox}")
+
         # without this, aioapns will retry every second forever.
         self.apns_client.pool.max_connection_attempts = 3
 
@@ -195,6 +201,10 @@ class ApnsPushkin(ConcurrencyLimitedPushkin):
         span.set_tag("apns_id", notif_id)
 
         device_token = base64.b64decode(device.pushkey).hex()
+
+        log.info(f"device: {device}")
+        log.info(f"pushkey: {device.pushkey}")
+        log.info(f"device_token_base64: {device_token}")
 
         request = NotificationRequest(
             device_token=device_token,
