@@ -199,11 +199,11 @@ class ApnsPushkin(ConcurrencyLimitedPushkin):
 
         notif_id = str(uuid4())
 
-        log.info(f"keyfile: {self.get_config("keyfile")}")
-        log.info(f"key_id: {self.get_config("key_id")}")
-        log.info(f"team_id: {self.get_config("team_id")}")
-        log.info(f"topic: {self.get_config("topic")}")
-        log.info(f"sandbox: {self.use_sandbox}")
+        # log.info(f"keyfile: {self.get_config("keyfile")}")
+        # log.info(f"key_id: {self.get_config("key_id")}")
+        # log.info(f"team_id: {self.get_config("team_id")}")
+        # log.info(f"topic: {self.get_config("topic")}")
+        # log.info(f"sandbox: {self.use_sandbox}")
 
         log.info(f"Sending as APNs-ID {notif_id}")
         span.set_tag("apns_id", notif_id)
