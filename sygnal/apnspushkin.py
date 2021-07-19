@@ -166,6 +166,8 @@ class ApnsPushkin(ConcurrencyLimitedPushkin):
                 loop=loop,
             )
 
+            log = NotificationLoggerAdapter(logger, {"request_id": "test1"})
+ 
             log.info(f"keyfile: {self.get_config("keyfile")}")
             log.info(f"key_id: {self.get_config("key_id")}")
             log.info(f"team_id: {self.get_config("team_id")}")
