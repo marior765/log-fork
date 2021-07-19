@@ -166,13 +166,13 @@ class ApnsPushkin(ConcurrencyLimitedPushkin):
                 loop=loop,
             )
 
-            log = NotificationLoggerAdapter(logger, {"request_id": "test1"})
+            # log = NotificationLoggerAdapter(logger, {"request_id": "test1"})
  
-            log.info(f"keyfile: {self.get_config("keyfile")}")
-            log.info(f"key_id: {self.get_config("key_id")}")
-            log.info(f"team_id: {self.get_config("team_id")}")
-            log.info(f"topic: {self.get_config("topic")}")
-            log.info(f"sandbox: {self.use_sandbox}")
+            # log.info(f"keyfile: {self.get_config("keyfile")}")
+            # log.info(f"key_id: {self.get_config("key_id")}")
+            # log.info(f"team_id: {self.get_config("team_id")}")
+            # log.info(f"topic: {self.get_config("topic")}")
+            # log.info(f"sandbox: {self.use_sandbox}")
 
         # without this, aioapns will retry every second forever.
         self.apns_client.pool.max_connection_attempts = 3
@@ -198,6 +198,12 @@ class ApnsPushkin(ConcurrencyLimitedPushkin):
         # notif_id = context.request_id + f"-{n.devices.index(device)}"
 
         notif_id = str(uuid4())
+
+        log.info(f"keyfile: {self.get_config("keyfile")}")
+        log.info(f"key_id: {self.get_config("key_id")}")
+        log.info(f"team_id: {self.get_config("team_id")}")
+        log.info(f"topic: {self.get_config("topic")}")
+        log.info(f"sandbox: {self.use_sandbox}")
 
         log.info(f"Sending as APNs-ID {notif_id}")
         span.set_tag("apns_id", notif_id)
